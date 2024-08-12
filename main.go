@@ -20,7 +20,7 @@ func createDB() {
 	Db, _ := sql.Open("sqlite", "data.db")
 	defer Db.Close()
 
-	createTrips, _ := Db.Prepare("CREATE TABLE IF NOT EXISTS crews (id INTEGER PRIMARY KEY, name TEXT)")
+	createTrips, _ := Db.Prepare("CREATE TABLE IF NOT EXISTS crews (id INTEGER PRIMARY KEY, name TEXT UNIQUE NOT NULL)")
 	_, err := createTrips.Exec()
 	if err != nil {
 		fmt.Printf("Failed to create table: %v\n", err)
